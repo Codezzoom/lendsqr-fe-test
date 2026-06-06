@@ -1,5 +1,17 @@
-import { EllipsisVertical, ListFilter } from "lucide-react";
+import { useState } from "react";
+import { EllipsisVerticalIcon, SlidersHorizontal } from "lucide-react";
+import FilterPanel from "../FilterPanel/FilterPanel";
+import ActionMenu from "../ActionMenu/ActionMenu";
 import "./Table.scss";
+
+const headings = [
+  "ORGANIZATION",
+  "USERNAME",
+  "EMAIL",
+  "PHONE NUMBER",
+  "DATE JOINED",
+  "STATUS",
+];
 
 const users = [
   ["Lendsqr", "Adedeji", "adedeji@lendsqr.com", "08078903721", "May 15, 2020 10:00 AM", "Inactive"],
@@ -13,28 +25,32 @@ const users = [
   ["Lendstar", "Grace Effiom", "grace@lendstar.com", "07060780922", "Apr 30, 2020 10:00 AM", "Inactive"],
 ];
 
-const headings = [
-  "ORGANIZATION",
-  "USERNAME",
-  "EMAIL",
-  "PHONE NUMBER",
-  "DATE JOINED",
-  "STATUS",
-];
-
 const Table = () => {
+  const [showFilter, setShowFilter] = useState(false);
+  const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
+
   return (
     <div className="table-card">
+      {showFilter && <FilterPanel />}
+
       <div className="table-wrapper">
         <table>
           <thead>
             <tr>
-              {headings.map((heading) => (
+              {headings.map((heading, index) => (
                 <th key={heading}>
                   <span>{heading}</span>
-                  <ListFilter size={16} />
+
+                  <button
+                    type="button"
+                    className="filter-icon-button"
+                    onClick={() => index && setShowFilter((prev) => !prev)}
+                  >
+                    <SlidersHorizontal size={14} />
+                  </button>
                 </th>
               ))}
+
               <th></th>
             </tr>
           </thead>
@@ -52,10 +68,19 @@ const Table = () => {
                     {user[5]}
                   </span>
                 </td>
-                <td>
-                  <button className="menu-button">
-                    <EllipsisVertical size={18} />
+
+                <td className="action-cell">
+                  <button
+                    type="button"
+                    className="menu-button"
+                    onClick={() =>
+                      setOpenMenuIndex(openMenuIndex === index ? null : index)
+                    }
+                  >
+                    <EllipsisVerticalIcon size={18} />
                   </button>
+
+                  {openMenuIndex === index && <ActionMenu />}
                 </td>
               </tr>
             ))}
