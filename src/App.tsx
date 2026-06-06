@@ -1,11 +1,5 @@
-import Login from "./pages/Login/Login"
-
-function App() {
-  return (
-    <>
-      <Login />
-    </>
-  )
+const App = () => {
+  return null;
 }
 
 export default App
