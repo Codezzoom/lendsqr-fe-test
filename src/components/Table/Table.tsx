@@ -1,8 +1,20 @@
 import { useState } from "react";
-import { EllipsisVerticalIcon, SlidersHorizontal } from "lucide-react";
-import FilterPanel from "../FilterPanel/FilterPanel";
+import { MoreVertical, SlidersHorizontal } from "lucide-react";
+
+import type { User } from "../../types/user";
 import ActionMenu from "../ActionMenu/ActionMenu";
+import FilterPanel from "../FilterPanel/FilterPanel";
+
 import "./Table.scss";
+
+interface TableProps {
+  users: User[];
+  searchText: string;
+  statusFilter: string;
+  onSearchChange: (value: string) => void;
+  onStatusChange: (value: string) => void;
+  onResetFilters: () => void;
+}
 
 const headings = [
   "ORGANIZATION",
@@ -13,38 +25,42 @@ const headings = [
   "STATUS",
 ];
 
-const users = [
-  ["Lendsqr", "Adedeji", "adedeji@lendsqr.com", "08078903721", "May 15, 2020 10:00 AM", "Inactive"],
-  ["Irorun", "Debby Ogana", "debby2@irorun.com", "08160780928", "Apr 30, 2020 10:00 AM", "Pending"],
-  ["Lendstar", "Grace Effiom", "grace@lendstar.com", "07060780922", "Apr 30, 2020 10:00 AM", "Blacklisted"],
-  ["Lendsqr", "Tosin Dokunmu", "tosin@lendsqr.com", "07003309226", "Apr 10, 2020 10:00 AM", "Pending"],
-  ["Lendstar", "Grace Effiom", "grace@lendstar.com", "07060780922", "Apr 30, 2020 10:00 AM", "Active"],
-  ["Lendsqr", "Tosin Dokunmu", "tosin@lendsqr.com", "08060780900", "Apr 10, 2020 10:00 AM", "Active"],
-  ["Lendstar", "Grace Effiom", "grace@lendstar.com", "07060780922", "Apr 30, 2020 10:00 AM", "Blacklisted"],
-  ["Lendsqr", "Tosin Dokunmu", "tosin@lendsqr.com", "08060780900", "Apr 10, 2020 10:00 AM", "Inactive"],
-  ["Lendstar", "Grace Effiom", "grace@lendstar.com", "07060780922", "Apr 30, 2020 10:00 AM", "Inactive"],
-];
-
-const Table = () => {
+const Table = ({
+  users,
+  searchText,
+  statusFilter,
+  onSearchChange,
+  onStatusChange,
+  onResetFilters,
+}: TableProps) => {
   const [showFilter, setShowFilter] = useState(false);
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
 
   return (
     <div className="table-card">
-      {showFilter && <FilterPanel />}
+      {showFilter && (
+        <FilterPanel
+          searchText={searchText}
+          statusFilter={statusFilter}
+          onSearchChange={onSearchChange}
+          onStatusChange={onStatusChange}
+          onResetFilters={onResetFilters}
+          onClose={() => setShowFilter(false)}
+        />
+      )}
 
       <div className="table-wrapper">
         <table>
           <thead>
             <tr>
-              {headings.map((heading, index) => (
+              {headings.map((heading) => (
                 <th key={heading}>
                   <span>{heading}</span>
 
                   <button
                     type="button"
                     className="filter-icon-button"
-                    onClick={() => index && setShowFilter((prev) => !prev)}
+                    onClick={() => setShowFilter((prev) => !prev)}
                   >
                     <SlidersHorizontal size={14} />
                   </button>
@@ -57,15 +73,15 @@ const Table = () => {
 
           <tbody>
             {users.map((user, index) => (
-              <tr key={`${user[1]}-${index}`}>
-                <td>{user[0]}</td>
-                <td>{user[1]}</td>
-                <td>{user[2]}</td>
-                <td>{user[3]}</td>
-                <td>{user[4]}</td>
+              <tr key={user.id}>
+                <td>{user.organization}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.phoneNumber}</td>
+                <td>{user.dateJoined}</td>
                 <td>
-                  <span className={`status ${user[5].toLowerCase()}`}>
-                    {user[5]}
+                  <span className={`status ${user.status.toLowerCase()}`}>
+                    {user.status}
                   </span>
                 </td>
 
@@ -77,10 +93,10 @@ const Table = () => {
                       setOpenMenuIndex(openMenuIndex === index ? null : index)
                     }
                   >
-                    <EllipsisVerticalIcon size={18} />
+                    <MoreVertical size={18} />
                   </button>
 
-                  {openMenuIndex === index && <ActionMenu userId={String(index + 1)} />}
+                  {openMenuIndex === index && <ActionMenu user={user} />}
                 </td>
               </tr>
             ))}

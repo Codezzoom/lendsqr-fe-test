@@ -1,0 +1,31 @@
+.state-message {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  color: #545f7d;
+
+  h3 {
+    color: #213f7d;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.state-message.loading {
+  border-top: 3px solid #39cdcc;
+}
+
+.state-message.error {
+  border-top: 3px solid #e4033b;
+}
+
+.state-message.empty {
+  border-top: 3px solid #e9b200;
+}

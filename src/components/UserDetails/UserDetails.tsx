@@ -1,9 +1,39 @@
-import { ArrowLeft, User } from "lucide-react";
+import { useState } from "react";
+import { ArrowLeft, User as UserIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import type { User } from "../../types/user";
 import "./UserDetails.scss";
+
+const getSavedUser = (): User | null => {
+  const savedUser = localStorage.getItem("selectedUser");
+
+  if (!savedUser) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(savedUser) as User;
+  } catch {
+    return null;
+  }
+};
 
 const UserDetails = () => {
   const navigate = useNavigate();
+  const [user] = useState<User | null>(() => getSavedUser());
+
+  if (!user) {
+    return (
+      <section className="user-details-page">
+        <button className="back-button" onClick={() => navigate("/dashboard")}>
+          <ArrowLeft size={18} />
+          Back to Users
+        </button>
+
+        <p>No user details found.</p>
+      </section>
+    );
+  }
 
   return (
     <section className="user-details-page">
@@ -24,12 +54,12 @@ const UserDetails = () => {
       <div className="profile-card">
         <div className="profile-summary">
           <div className="avatar-circle">
-            <User size={40} />
+            <UserIcon size={40} />
           </div>
 
           <div className="profile-name">
-            <h2>Grace Effiom</h2>
-            <p>LSQFf587g90</p>
+            <h2>{user.fullName}</h2>
+            <p>{user.id}</p>
           </div>
 
           <div className="tier">
@@ -38,8 +68,10 @@ const UserDetails = () => {
           </div>
 
           <div className="account">
-            <h2>₦200,000.00</h2>
-            <p>9912345678/Providus Bank</p>
+            <h2>{user.accountBalance}</h2>
+            <p>
+              {user.accountNumber}/{user.bankName}
+            </p>
           </div>
         </div>
 
@@ -57,46 +89,46 @@ const UserDetails = () => {
         <DetailSection
           title="Personal Information"
           items={[
-            ["FULL NAME", "Grace Effiom"],
-            ["PHONE NUMBER", "07060780922"],
-            ["EMAIL ADDRESS", "grace@gmail.com"],
-            ["BVN", "07060780922"],
-            ["GENDER", "Female"],
-            ["MARITAL STATUS", "Single"],
-            ["CHILDREN", "None"],
-            ["TYPE OF RESIDENCE", "Parent’s Apartment"],
+            ["FULL NAME", user.fullName],
+            ["PHONE NUMBER", user.phoneNumber],
+            ["EMAIL ADDRESS", user.email],
+            ["BVN", user.bvn],
+            ["GENDER", user.gender],
+            ["MARITAL STATUS", user.maritalStatus],
+            ["CHILDREN", user.children],
+            ["TYPE OF RESIDENCE", user.typeOfResidence],
           ]}
         />
 
         <DetailSection
           title="Education and Employment"
           items={[
-            ["LEVEL OF EDUCATION", "B.Sc"],
-            ["EMPLOYMENT STATUS", "Employed"],
-            ["SECTOR OF EMPLOYMENT", "FinTech"],
-            ["DURATION OF EMPLOYMENT", "2 years"],
-            ["OFFICE EMAIL", "grace@lendsqr.com"],
-            ["MONTHLY INCOME", "₦200,000.00- ₦400,000.00"],
-            ["LOAN REPAYMENT", "40,000"],
+            ["LEVEL OF EDUCATION", user.education],
+            ["EMPLOYMENT STATUS", user.employmentStatus],
+            ["SECTOR OF EMPLOYMENT", user.sector],
+            ["DURATION OF EMPLOYMENT", user.durationOfEmployment],
+            ["OFFICE EMAIL", user.officeEmail],
+            ["MONTHLY INCOME", user.monthlyIncome],
+            ["LOAN REPAYMENT", user.loanRepayment],
           ]}
         />
 
         <DetailSection
           title="Socials"
           items={[
-            ["TWITTER", "@grace_effiom"],
-            ["FACEBOOK", "Grace Effiom"],
-            ["INSTAGRAM", "@grace_effiom"],
+            ["TWITTER", user.twitter],
+            ["FACEBOOK", user.facebook],
+            ["INSTAGRAM", user.instagram],
           ]}
         />
 
         <DetailSection
           title="Guarantor"
           items={[
-            ["FULL NAME", "Debby Ogana"],
-            ["PHONE NUMBER", "07060780922"],
-            ["EMAIL ADDRESS", "debby@gmail.com"],
-            ["RELATIONSHIP", "Sister"],
+            ["FULL NAME", user.guarantorName],
+            ["PHONE NUMBER", user.guarantorPhone],
+            ["EMAIL ADDRESS", user.guarantorEmail],
+            ["RELATIONSHIP", user.guarantorRelationship],
           ]}
         />
       </div>

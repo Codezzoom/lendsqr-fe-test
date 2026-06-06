@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { Eye, UserX, UserCheck } from "lucide-react";
+import type { User } from "../../types/user";
 import "./ActionMenu.scss";
 
 interface ActionMenuProps {
-  userId: string;
+  user: User;
 }
 
-const ActionMenu = ({ userId }: ActionMenuProps) => {
+const ActionMenu = ({ user }: ActionMenuProps) => {
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    navigate(`/users/${userId}`);
+    localStorage.setItem("selectedUser", JSON.stringify(user));
+    navigate(`/users/${user.id}`);
   };
 
   return (
