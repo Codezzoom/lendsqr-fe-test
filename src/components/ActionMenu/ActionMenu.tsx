@@ -1,10 +1,21 @@
-import "./ActionMenu.scss";
+import { useNavigate } from "react-router-dom";
 import { Eye, UserX, UserCheck } from "lucide-react";
+import "./ActionMenu.scss";
 
-const ActionMenu = () => {
+interface ActionMenuProps {
+  userId: string;
+}
+
+const ActionMenu = ({ userId }: ActionMenuProps) => {
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    navigate(`/users/${userId}`);
+  };
+
   return (
     <div className="action-menu">
-      <button type="button">
+      <button type="button" onClick={handleViewDetails}>
         <Eye size={16} />
         <span>View Details</span>
       </button>

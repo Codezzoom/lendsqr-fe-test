@@ -80,7 +80,7 @@ const Table = () => {
                     <EllipsisVerticalIcon size={18} />
                   </button>
 
-                  {openMenuIndex === index && <ActionMenu />}
+                  {openMenuIndex === index && <ActionMenu userId={String(index + 1)} />}
                 </td>
               </tr>
             ))}

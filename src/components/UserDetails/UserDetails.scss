@@ -1,0 +1,212 @@
+.user-details-page {
+  color: #213f7d;
+}
+
+.back-button {
+  border: none;
+  background: transparent;
+  color: #545f7d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.top-actions {
+  display: flex;
+  gap: 20px;
+
+  button {
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+}
+
+.blacklist-button {
+  border: 1px solid #e4033b;
+  color: #e4033b;
+}
+
+.activate-button {
+  border: 1px solid #39cdcc;
+  color: #39cdcc;
+}
+
+.profile-card,
+.details-card {
+  background: white;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.profile-card {
+  margin-bottom: 30px;
+}
+
+.profile-summary {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 30px;
+}
+
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #dfe3ee;
+  display: grid;
+  place-items: center;
+  color: #213f7d;
+}
+
+.profile-name,
+.tier {
+  padding-right: 30px;
+  border-right: 1px solid rgba(84, 95, 125, 0.2);
+}
+
+.profile-name h2,
+.account h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.profile-name p,
+.tier p,
+.account p {
+  font-family: Work Sans;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #213f7d;
+}
+
+.tier span {
+  color: #e9b200;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+
+  button {
+    font-family: SF Compact Text;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    border: none;
+    background: transparent;
+    padding: 18px 20px 10px;
+    color: #000000;
+    cursor: pointer;
+  }
+
+  .active-tab {
+    color: #39cdcc;
+    border-bottom: 2px solid #39cdcc;
+  }
+}
+
+.details-card {
+  padding: 30px;
+}
+
+.detail-section {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+
+  h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+.detail-item {
+  p {
+    color: #545f7d;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h4 {
+    color: #545f7d;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 1000px) {
+  .profile-summary {
+    flex-wrap: wrap;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tabs {
+    overflow-x: auto;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .top-actions {
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
