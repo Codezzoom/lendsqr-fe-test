@@ -1,8 +1,15 @@
 import "./Login.scss";
 import logo from "../../assets/images/logo.png";
 import loginIllustration from "../../assets/images/pablo-sign-in 1.svg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/dashboard");
+  }
+
   return (
     <main className="login">
       <section className="login__left">
@@ -30,7 +37,7 @@ const Login = () => {
             FORGOT PASSWORD?
           </a>
 
-          <button type="submit" className="login__button">
+          <button type="submit" className="login__button" onClick={handleLogin}>
             LOG IN
           </button>
         </form>
