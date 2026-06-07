@@ -25,7 +25,7 @@ The goal of this project was to create a production-ready frontend experience wh
 Deployment URL:
 
 ```txt
-https://your-vercel-url.vercel.app
+https://amritvir-randhawa-lendsqr-fe-test.vercel.app/
 ```
 
 ---
