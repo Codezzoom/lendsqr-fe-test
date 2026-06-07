@@ -1,73 +1,246 @@
-# React + TypeScript + Vite
+# Lendsqr Frontend Engineering Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a frontend implementation of the Lendsqr Admin Console assessment built with React, TypeScript, and SCSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application includes:
 
-## React Compiler
+* Login Page
+* Dashboard Layout
+* Users Page
+* User Details Page
+* Responsive Design
+* Filtering
+* Pagination
+* Local Storage Persistence
+* Unit Testing
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The goal of this project was to create a production-ready frontend experience while following the design specifications provided in the Figma file.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Live Demo
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Deployment URL:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```txt
+https://your-vercel-url.vercel.app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Repository
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+GitHub Repository:
+
+```txt
+https://github.com/codezzoom/lendsqr-fe-test
 ```
+
+---
+
+## Tech Stack
+
+* React
+* TypeScript
+* SCSS
+* React Router DOM
+* Lucide React Icons
+* Jest
+* React Testing Library
+* Vite
+
+---
+
+## Features
+
+### Authentication
+
+* Login page implementation
+* Form validation
+* Responsive layout
+
+### Dashboard Layout
+
+* Fixed header
+* Responsive sidebar
+* Mobile hamburger menu
+* Protected dashboard structure
+
+### Users Page
+
+* Users statistics cards
+* Data table
+* Search and filtering
+* Status filtering
+* Pagination
+* Loading state
+* Empty state
+* Error state
+
+### User Details Page
+
+* Dynamic user details page
+* Local storage persistence
+* Detailed user information
+* Responsive layout
+
+### Responsiveness
+
+The application supports:
+
+* Desktop
+* Tablet
+* Mobile
+
+Tables become horizontally scrollable on smaller devices and the sidebar converts into a mobile navigation menu.
+
+---
+
+## Project Structure
+
+```txt
+src
+│
+├── assets
+├── components
+│   ├── Header
+│   ├── Sidebar
+│   ├── Table
+│   ├── Pagination
+│   ├── StatCard
+│   ├── FilterPanel
+│   └── StateMessage
+│
+├── layouts
+│   └── MainLayout
+│
+├── pages
+│   ├── Login
+│   ├── Users
+│   └── UserDetails
+│
+├── services
+├── types
+├── data
+└── test
+```
+
+---
+
+## Data Handling
+
+The assessment requires handling 500 user records.
+
+The application generates and manages 500 users and implements:
+
+* Client-side pagination
+* Search filtering
+* Status filtering
+
+Pagination is used to ensure smooth rendering and avoid displaying all records simultaneously.
+
+---
+
+## Local Storage
+
+When a user selects **View Details** from the Users table:
+
+1. The selected user is saved to Local Storage.
+2. The User Details page retrieves the saved data.
+3. The page renders user-specific information.
+
+This satisfies the persistence requirement specified in the assessment.
+
+---
+
+## Testing
+
+The project includes unit tests for:
+
+* Login page rendering
+* Users page loading state
+* Users page success state
+* Users page error state
+* Users page empty state
+* Pagination interactions
+* Filter interactions
+* User Details page localStorage retrieval
+
+Run tests:
+
+```bash
+npm run test
+```
+
+---
+
+## Running Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Run tests:
+
+```bash
+npm run test
+```
+
+Create production build:
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## Design Decisions
+
+### Pagination
+
+Instead of rendering all 500 users at once, pagination was implemented to improve performance and usability.
+
+### Local Storage
+
+Local Storage was selected for persistence because it satisfies the assessment requirements while keeping the implementation simple.
+
+### Responsive Design
+
+The original design focused primarily on desktop layouts. Additional responsive behavior was introduced for tablet and mobile experiences while maintaining visual consistency.
+
+### Component Architecture
+
+Reusable components were created for:
+
+* Sidebar navigation
+* Header
+* Statistics cards
+* Filters
+* Pagination
+* State handling
+
+This improves maintainability and scalability.
+
+---
+
+## Author
+
+Amritvir Randhawa
+
+Frontend Engineer Assessment Submission
