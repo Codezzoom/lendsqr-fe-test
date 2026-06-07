@@ -61,13 +61,14 @@ const Table = ({
                     type="button"
                     className="filter-icon-button"
                     onClick={() => setShowFilter((prev) => !prev)}
+                    aria-label={`Filter by ${heading}`}
                   >
                     <SlidersHorizontal size={14} />
                   </button>
                 </th>
               ))}
 
-              <th></th>
+              <th className="actions-heading" aria-label="Actions"></th>
             </tr>
           </thead>
 
@@ -88,12 +89,13 @@ const Table = ({
                 <td className="action-cell">
                   <button
                     type="button"
-                    className="menu-button"
+                    aria-label="Open user actions"
                     onClick={() =>
                       setOpenMenuIndex(openMenuIndex === index ? null : index)
                     }
                   >
-                    <MoreVertical size={18} />
+
+                    <MoreVertical size={20} />
                   </button>
 
                   {openMenuIndex === index && <ActionMenu user={user} />}
