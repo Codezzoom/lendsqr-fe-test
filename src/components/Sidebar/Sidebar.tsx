@@ -3,9 +3,13 @@ import SidebarItem from "./SidebarItem";
 import './Sidebar.scss'
 import { Briefcase, ChevronDown } from "lucide-react";
 
-const Sidebar = () => {
+interface SidebarProps {
+  isSidebarOpen: boolean;
+}
+
+const Sidebar = ({ isSidebarOpen }: SidebarProps) => {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
       <div className="switch-org">
         <Briefcase size={16} />
         <span>Switch Organization</span>
@@ -32,3 +36,4 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+

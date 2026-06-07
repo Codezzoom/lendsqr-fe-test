@@ -1,13 +1,36 @@
 .main-layout {
   min-height: 100vh;
   background: #fbfbfb;
+}
 
-  &__body {
-    display: flex;
+.main-layout__body {
+  display: flex;
+}
+
+.main-layout__content {
+  flex: 1;
+  padding: 60px;
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .main-layout__content {
+    padding: 40px 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-layout__body {
+    display: block;
   }
 
-  &__content {
-    flex: 1;
-    padding: 60px;
+  .main-layout__content {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-layout__content {
+    padding: 24px 16px;
   }
 }

@@ -106,26 +106,43 @@
   }
 }
 
-@media (max-width: 768px) {
-  .header {
-    padding: 0 20px;
+.menu-button {
+  display: none;
+}
 
-    &__search {
+@media (max-width: 900px) {
+  .header {
+    height: 80px;
+    padding: 0 20px;
+  }
+
+  .header__search {
+    display: none;
+  }
+
+  .header__actions {
+    gap: 14px;
+
+    a {
       display: none;
     }
+  }
 
-    &__actions {
-      gap: 12px;
-
-      a {
-        display: none;
-      }
+  .header__profile {
+    img {
+      width: 38px;
+      height: 38px;
     }
 
-    &__profile {
-      span {
-        display: none;
-      }
+    span {
+      display: none;
     }
+  }
+
+  .menu-button {
+    display: block;
+    border: none;
+    background: transparent;
+    cursor: pointer;
   }
 }

@@ -98,3 +98,9 @@ tbody tr:last-child td {
   position: relative;
   width: 40px;
 }
+
+@media (max-width: 600px) {
+  .table-card {
+    padding: 18px;
+  }
+}

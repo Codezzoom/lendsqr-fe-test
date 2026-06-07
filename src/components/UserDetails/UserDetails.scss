@@ -17,6 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   margin-bottom: 40px;
 
   h1 {
@@ -38,15 +39,18 @@
     font-weight: 600;
     letter-spacing: 1px;
     cursor: pointer;
+    white-space: nowrap;
   }
 }
 
 .blacklist-button {
+  display: grid;
   border: 1px solid #e4033b;
   color: #e4033b;
 }
 
 .activate-button {
+  display: grid;
   border: 1px solid #39cdcc;
   color: #39cdcc;
 }
@@ -73,6 +77,7 @@
 .avatar-circle {
   width: 100px;
   height: 100px;
+  min-width: 100px;
   border-radius: 50%;
   background: #dfe3ee;
   display: grid;
@@ -96,11 +101,8 @@
 .profile-name p,
 .tier p,
 .account p {
-  font-family: Work Sans;
-  font-weight: 400;
+  font-family: "Work Sans", sans-serif;
   font-size: 12px;
-  line-height: 100%;
-  letter-spacing: 0px;
   color: #213f7d;
 }
 
@@ -111,19 +113,17 @@
 .tabs {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   padding: 0 30px;
+  overflow-x: auto;
 
   button {
-    font-family: SF Compact Text;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: center;
+    min-width: max-content;
     border: none;
     background: transparent;
     padding: 18px 20px 10px;
     color: #000000;
+    font-size: 16px;
     cursor: pointer;
   }
 
@@ -161,6 +161,8 @@
 }
 
 .detail-item {
+  min-width: 0;
+
   p {
     color: #545f7d;
     font-size: 12px;
@@ -172,41 +174,80 @@
     color: #545f7d;
     font-size: 16px;
     font-weight: 500;
+    word-break: break-word;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
+  .details-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
   .profile-summary {
     flex-wrap: wrap;
+  }
+
+  .profile-name,
+  .tier {
+    border-right: none;
+    padding-right: 0;
   }
 
   .details-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .tabs {
-    overflow-x: auto;
-    gap: 20px;
-  }
 }
 
 @media (max-width: 600px) {
+  .user-details-page button {
+    padding: 12px 24px 0px;
+  }
+
   .page-top {
     align-items: flex-start;
     flex-direction: column;
-    gap: 20px;
+
+    h1 {
+      padding: 0px 24px;
+    }
   }
 
   .top-actions {
-    flex-direction: column;
     width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
 
     button {
       width: 100%;
     }
   }
 
+  .profile-summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+  }
+
+  .avatar-circle {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+  }
+
+  .tabs {
+    padding: 0 20px;
+  }
+
+  .details-card {
+    padding: 24px;
+  }
+
   .details-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 }

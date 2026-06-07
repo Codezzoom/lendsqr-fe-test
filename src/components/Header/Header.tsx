@@ -3,16 +3,21 @@ import "./Header.scss";
 import logo from "../../assets/images/logo.png";
 import avatar from "../../assets/images/avatar.png";
 
-import { Bell, Search } from "lucide-react";
+import { Bell, Search, Menu } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
+interface HeaderProps {
+  isSidebarOpen: boolean,
+  setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-
-const Header = () => {
+const Header = ({ isSidebarOpen, setIsSidebarOpen }: HeaderProps) => {
+  const navigate = useNavigate();
   return (
     <header className="header">
-      <div className="header__logo">
+      <div className="header__logo" onClick={() => navigate("/dashboard")}>
         <img src={logo} alt="Lendsqr" />
       </div>
 
@@ -42,8 +47,15 @@ const Header = () => {
           <FontAwesomeIcon icon={faCaretDown} />
         </div>
       </div>
+      <button
+        className="menu-button"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        <Menu size={24} />
+      </button>
     </header>
   );
 };
 
 export default Header;
+
